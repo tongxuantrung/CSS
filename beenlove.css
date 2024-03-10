@@ -1,0 +1,283 @@
+
+ html,body{cursor:url("https://1.bp.blogspot.com/-qbWo9mPKO2Y/YL9utYdQBdI/AAAAAAAAFs4/mtjGu6u2uGwtJsT4gZG4lbhLV1a5lG6OQCLcBGAsYHQ/s0/mouse-f1.png"), auto;}a:hover{cursor:url("https://1.bp.blogspot.com/-nYv2dLl3oXY/YL9utYBCh8I/AAAAAAAAFtA/wII4lVw5w4k-4isGMY41heTqk8U4TJujgCLcBGAsYHQ/s0/mouse-f2.png"), auto;}html,body{background-color:#f6f6f6;margin:0;padding:0}img{max-width:100%}body{display:grid;font-family:"Segoe UI",sans-serif;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(auto,auto);color:#3e3e3e;text-shadow:.4px .4px .4px rgba(0,0,0,.2)}h1{font-weight:lighter;grid-column:span 3;text-align:center;color:#ec407a}#wrapper{display:grid;grid-column:3 / 11;grid-template-columns:repeat(3,1fr);grid-auto-rows:minmax(auto,auto);grid-row-gap:10px;margin-top:3.6rem}#clock-box,#info{grid-column:span 3;display:grid;grid-template-columns:repeat(12,1fr)}#clock-box #clock{grid-column:4 / 10;background-color:#F8C8C8;padding:.6rem 2rem;padding-top:.8rem;text-align:center;font-size:2.4rem;border-radius:10rem}date,time{display:block}date{font-size:18px}time{font-family:"Arial",sans-serif;line-height:3.2rem;letter-spacing:2px}.avt{width:160px;height:160px;border-radius:50%;box-shadow:2px 2px 8px rgba(0,0,0,.2)}#info{margin-top:2.6rem}#heart{grid-column:span 2;display:grid;grid-template-rows:2;font-size:44px;color:#b90d46;align-self:center;padding-bottom:2.6rem;text-align:center}anni{font-size:16px;letter-spacing:.2px}#info .one{grid-column:3 / 6;text-align:center}#info .two{grid-column:8 / 11;text-align:center}footer{grid-column:span 3;text-align:center;font-size:1.6rem;font-weight:lighter;margin-top:1.2rem}#music{grid-column:2;position:relative;z-index:1000;opacity:.4}#mask{background-image:linear-gradient(to top,#6d44cc5d 0%,#f09cd880 100%);opacity:.42;width:100vw;height:100vh;position:fixed;top:0;left:0}@media (max-width: 992px){#wrapper{grid-column:span 12}#clock-box #clock{grid-column:2 / 12}.avt{width:120px;height:120px}#info .one,#info .two{grid-column:span 12}#heart{grid-column:span 12;padding-bottom:1rem}footer{font-size:1.2rem;margin:0;padding-bottom:2rem}}#loader{position:fixed;top:0;left:0;right:0;bottom:0;background:#F0BBCB;z-index:1000}.spinner{position:fixed;width:100%;top:70%;height:30px;text-align:center;font-size:10px}.spinner,.spinner-inner{position:absolute;top:0;bottom:0;right:0;left:0;border:9px solid white;border-color:transparent white;margin:auto}.spinner{width:85px;height:85px;-webkit-animation:spin 2.2s linear 0s infinite normal;-moz-animation:spin 2.2s linear 0s infinite normal;animation:spin 2.2s linear 0s infinite normal}.spinner-inner{width:40px;height:40px;-webkit-animation:spinback 1.2s linear 0s infinite normal;-moz-animation:spinback 1.2s linear 0s infinite normal;animation:spinback 1.2s linear 0s infinite normal}@-webkit-keyframes spin{from{-webkit-transform:rotate(0)}to{-webkit-transform:rotate(360deg)}}@-moz-keyframes spin{from{-moz-transform:rotate(0)}to{-moz-transform:rotate(360deg)}}@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}@-webkit-keyframes spinback{from{-webkit-transform:rotate(0)}to{-webkit-transform:rotate(-360deg)}}@-moz-keyframes spinback{from{-moz-transform:rotate(0)}to{-moz-transform:rotate(-360deg)}}@keyframes spinback{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+
+/* CSS Heart */
+.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
+.animated.infinite{-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}
+@-webkit-keyframes pulse{from{-webkit-transform:scale3d(0.068,0.068,0.068);transform:scale3d(0.068,0.068,0.068)}50%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}
+to{-webkit-transform:scale3d(0.068,0.068,0.068);transform:scale3d(0.068,0.068,0.068)}}
+@keyframes pulse{from{-webkit-transform:scale3d(0.068,0.068,0.068);transform:scale3d(0.068,0.068,0.068)}50%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}
+to{-webkit-transform:scale3d(0.068,0.068,0.068);transform:scale3d(0.068,0.068,0.068)}}
+.pulse{-webkit-animation-name:pulse;animation-name:pulse}
+/* CSS login */
+.xuantrung-login-wrapper {
+    background: #F0BBCB;
+    background: linear-gradient(to bottom right, #F0BBCB 0%, #ffafcc 100%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    min-height: 120vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0
+}
+
+.xuantrung-login-wrapper.hidden {
+    display: none !important;
+}
+
+.xuantrung-login-wrapper.form-success .xuantrung-login-container xuantrung-login-h1 {
+    transform: translateY(85px);
+}
+
+.xuantrung-login-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 80px 0;
+    height: 400px;
+    text-align: center;
+}
+
+.xuantrung-login-container xuantrung-login-h1 {
+    font-size: 36px;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-put;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: white;
+    font-weight: 300;
+}
+
+.xuantrung-login-form {
+    padding: 20px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.xuantrung-login-form input {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 250px;
+    border-radius: 3px;
+    padding: 10px 15px;
+transition: all .4s ease-in-out;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    transition-duration: 0.25s;
+    font-weight: 300;
+}
+
+.xuantrung-login-form input:hover {background-color: fade(white, 40%);
+}
+
+.xuantrung-login-form input:focus {
+    background-color: none;
+    color: #fff;
+width:300px
+}
+
+.xuantrung-login-form button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    background-color: white;
+    border: 0;
+    padding: 10px 15px;
+    color: #ffafcc;
+    border-radius: 3px;
+    width: 250px;
+    cursor: pointer;
+    font-size: 18px;
+    transition-duration: 0.25s;
+}
+
+.xuantrung-login-form button:hover {
+    background-color: #f5f7f9;
+}
+
+.xuantrung-heart {
+    opacity: .68;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0 10px 0;
+    width: 45px;
+    animation: xuantrung-heart-beat 1s ease-in-out infinite
+}
+
+#xuantrung-login-check {
+    font-size: 16px;
+    color: #fff;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;}
+#username::-webkit-input-placeholder,
+#password::-webkit-input-placeholder {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: white;
+    font-weight: 300;
+}
+.xuantrung-login-bg-bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.xuantrung-login-bg-bubbles li {
+    position: absolute;
+    list-style: none;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.15);
+    bottom: -160px;
+    -webkit-animation: square 25s infinite;
+    animation: square 25s infinite;
+    transition-timing-function: linear;
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(1) {
+    left: 10%;
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(2) {
+    left: 20%;
+    width: 80px;
+    height: 80px;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation-duration: 17s;
+    animation-duration: 17s;
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(3) {
+    left: 25%;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation-duration: 22s;
+    animation-duration: 22s;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(5) {
+    left: 70%;
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(6) {
+    left: 80%;
+    width: 120px;
+    height: 120px;
+    -webkit-animation-delay: 3s;
+    animation-delay: 3s;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(7) {
+    left: 32%;
+    width: 160px;
+    height: 160px;
+    -webkit-animation-delay: 7s;
+    animation-delay: 7s;
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(8) {
+    left: 55%;
+    width: 20px;
+    height: 20px;
+    -webkit-animation-delay: 15s;
+    animation-delay: 15s;
+    -webkit-animation-duration: 40s;
+    animation-duration: 40s;
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(9) {
+    left: 25%;
+    width: 10px;
+    height: 10px;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation-duration: 40s;
+    animation-duration: 40s;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.xuantrung-login-bg-bubbles li:nth-child(10) {
+    left: 90%;
+    width: 160px;
+    height: 160px;
+    -webkit-animation-delay: 11s;
+    animation-delay: 11s;
+}
+
+.version{
+    color: #fb6f92;
+    font-size: 12px;
+    position: fixed;
+    top: 5px;
+    right: 5px;
+}
+
+.footer-license {
+	position: fixed;
+	bottom: 6px;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 300;
+    text-align: center;
+}
+
+@-webkit-keyframes square {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-700px) rotate(600deg);
+    }
+}
+
+@keyframes square {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-700px) rotate(600deg);
+    }
+}
+
+@keyframes xuantrung-heart-beat{
+0% {
+    transform: scale(.9);
+}
+
+45% {
+    transform: scale(1.1);
+}
+70% {
+    transform: scale(.9);
+}
+100% {
+    transform: scale(.9);
+}
