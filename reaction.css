@@ -57,19 +57,21 @@
     transform: scale(1.4);
 }
 
-/* Hiệu ứng reaction-nhan */
-@keyframes showReaction {
+@keyframes shakeReaction {
     0% {
-        opacity: 0;
-        transform: translateY(-10px) scale(0.8); /* Bắt đầu nhỏ và dịch chuyển lên */
+        transform: translateX(-5px); /* Bắt đầu lệch trái */
+    }
+    25% {
+        transform: translateX(5px); /* Di chuyển sang phải */
     }
     50% {
-        opacity: 1;
-        transform: translateY(0) scale(1.1); /* Hiển thị và phóng to nhẹ */
+        transform: translateX(-5px); /* Di chuyển sang trái */
+    }
+    75% {
+        transform: translateX(5px); /* Di chuyển sang phải */
     }
     100% {
-        opacity: 1;
-        transform: translateY(0) scale(1); /* Giữ nguyên khi kết thúc */
+        transform: translateX(0); /* Về vị trí ban đầu */
     }
 }
 
@@ -91,12 +93,14 @@
     width: 100%;
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
     transform-origin: center bottom;
-    animation: showReaction 0.6s ease forwards; /* Áp dụng hoạt hình */
+    animation: showReaction 0.6s ease forwards; /* Áp dụng hoạt hình khi hiển thị */
 }
 
+/* Khi hover, reaction-nhan sẽ có hiệu ứng lắc qua lại */
 .reaction:hover .reaction-nhan {
     display: block;
     visibility: visible; /* Hiển thị khi hover */
+    animation: shakeReaction 1s ease-in-out; /* Áp dụng hiệu ứng lắc */
 }
 
 /* Hiệu ứng tổng số */
