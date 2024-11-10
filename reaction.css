@@ -1,1 +1,133 @@
-.reaction-section{position:relative;display:block}.reaction-section-title{display:block;margin-bottom:25px;text-align:center}.rb-reaction{display:flex;flex-flow:row nowrap;justify-content:space-between;max-width:700px;margin-right:auto;margin-left:auto}.reaction{position:relative;flex:0 0 85px;max-width:70px;cursor:pointer}.reaction-content{display:block;padding-top:5px;text-align:center;padding-bottom:5px;-webkit-transition:all .3s cubic-bezier(.36,.8,.41,1);transition:all .3s cubic-bezier(.36,.8,.41,1);background-color:transparent}.reaction.active .reaction-content{border-color:#f9d045}.reaction-content .reaction-icon{display:block;width:60px;height:auto;margin:auto;padding-right:10px;padding-left:10px;-webkit-transition:transform .3s cubic-bezier(.36,.8,.41,1);transition:transform .3s cubic-bezier(.36,.8,.41,1);-webkit-transform:scale(1) rotate(0deg);transform:scale(1) rotate(0deg);will-change:transform}.reaction-content svg{max-width:100%;width:100%;height:auto}.reaction:hover .reaction-icon{-webkit-transform:scale(1.4);transform:scale(1.4)}.reaction:hover .reaction-nhan{display:block;opacity:1;transition:opacity 0.3s ease,transform 0.3s ease;visibility:visible;transform:scale(1.1) translateY(-10px)}.reaction-nhan{display:none;background:rgba(0,0,0,0.7);border-radius:100px;color:#fff;font-size:10px;font-weight:700;opacity:0;padding:4px;position:absolute;top:-25px;left:50%;transform:translateX(-50%) scale(0.8);visibility:hidden;line-height:normal;width:100%;transition:opacity 0.3s ease,transform 0.3s ease}.reaction-title.h6{font-size:13px;display:block;margin-top:5px;text-align:center;white-space:nowrap}.total-wrap{background:#a9a9a9;display:none;border-radius:100%;color:#fff;line-height:normal;height:16.96px;font-size:60%;font-weight:700;padding:2px 6px;position:absolute;right:3px;top:7px}.reaction.active .total-wrap{color:#fff;display:block;background:#f3797e}.reaction.active .reaction-title.h6{font-weight:700}.reaction:before{content:'';-webkit-transition:opacity .3s;transition:opacity .3s;pointer-events:none;opacity:0}.reaction.loading:before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid' width='200' height='200'%3E%3Cg data-idx='1'%3E%3Cg transform='matrix(1,0,0,1,80,50)' data-idx='2'%3E%3Cg transform='matrix(1,0,0,1,0,0)' data-idx='3'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.9103' data-idx='4' transform='matrix(1.4551500082015991,0,0,1.4551500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,71.21320343017578,71.21320343017578)' data-idx='7'%3E%3Cg transform='matrix(0.7071067811865476,0.7071067811865476,-0.7071067811865476,0.7071067811865476,0,0)' data-idx='8'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.0353' data-idx='9' transform='matrix(1.0176500082015991,0,0,1.0176500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,50,80)' data-idx='12'%3E%3Cg transform='matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)' data-idx='13'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.1603' data-idx='14' transform='matrix(1.0801500082015991,0,0,1.0801500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,28.78679656982422,71.21320343017578)' data-idx='17'%3E%3Cg transform='matrix(-0.7071067811865475,0.7071067811865476,-0.7071067811865476,-0.7071067811865475,0,0)' data-idx='18'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.2853' data-idx='19' transform='matrix(1.1426500082015991,0,0,1.1426500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,20,50)' data-idx='22'%3E%3Cg transform='matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)' data-idx='23'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.4103' data-idx='24' transform='matrix(1.2051500082015991,0,0,1.2051500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,28.78679656982422,28.78679656982422)' data-idx='27'%3E%3Cg transform='matrix(-0.7071067811865477,-0.7071067811865475,0.7071067811865475,-0.7071067811865477,0,0)' data-idx='28'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.5353' data-idx='29' transform='matrix(1.2676500082015991,0,0,1.2676500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,50,20)' data-idx='32'%3E%3Cg transform='matrix(-1.8369701987210297e-16,-1,1,-1.836970198
+/* Section và các phần tử chính */
+.reaction-section {
+    position: relative;
+    display: block;
+}
+.reaction-section-title {
+    display: block;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.rb-reaction {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    max-width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.reaction {
+    position: relative;
+    flex: 0 0 85px;
+    max-width: 70px;
+    cursor: pointer;
+}
+.reaction-content {
+    display: block;
+    padding-top: 5px;
+    text-align: center;
+    padding-bottom: 5px;
+    -webkit-transition: all .3s cubic-bezier(.36, .8, .41, 1);
+    transition: all .3s cubic-bezier(.36, .8, .41, 1);
+    background-color: transparent;
+}
+.reaction.active .reaction-content {
+    border-color: #f9d045;
+}
+.reaction-content .reaction-icon {
+    display: block;
+    width: 60px;
+    height: auto;
+    margin: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    -webkit-transition: transform .3s cubic-bezier(.36, .8, .41, 1);
+    transition: transform .3s cubic-bezier(.36, .8, .41, 1);
+    -webkit-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    will-change: transform;
+}
+.reaction-content svg {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+.reaction:hover .reaction-icon {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+/* Hiệu ứng reaction-nhan */
+@keyframes showReaction {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.8); /* Bắt đầu nhỏ và dịch chuyển lên */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0) scale(1.1); /* Hiển thị và phóng to nhẹ */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1); /* Giữ nguyên khi kết thúc */
+    }
+}
+
+.reaction-nhan {
+    display: none;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 100px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0;
+    padding: 4px;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8); /* Bắt đầu nhỏ và dịch chuyển */
+    visibility: hidden;
+    line-height: normal;
+    width: 100%;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    transform-origin: center bottom;
+    animation: showReaction 0.6s ease forwards; /* Áp dụng hoạt hình */
+}
+
+.reaction:hover .reaction-nhan {
+    display: block;
+    visibility: visible; /* Hiển thị khi hover */
+}
+
+/* Hiệu ứng tổng số */
+.total-wrap {
+    background: #a9a9a9;
+    display: none;
+    border-radius: 100%;
+    color: #fff;
+    line-height: normal;
+    height: 16.96px;
+    font-size: 60%;
+    font-weight: 700;
+    padding: 2px 6px;
+    position: absolute;
+    right: 3px;
+    top: 7px;
+}
+.reaction.active .total-wrap {
+    color: #fff;
+    display: block;
+    background: #f3797e;
+}
+.reaction.active .reaction-title.h6 {
+    font-weight: 700;
+}
+.reaction:before {
+    content: '';
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+    pointer-events: none;
+    opacity: 0;
+}
+.reaction.loading:before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid' width='200' height='200'%3E%3Cg data-idx='1'%3E%3Cg transform='matrix(1,0,0,1,80,50)' data-idx='2'%3E%3Cg transform='matrix(1,0,0,1,0,0)' data-idx='3'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.9103' data-idx='4' transform='matrix(1.4551500082015991,0,0,1.4551500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,71.21320343017578,71.21320343017578)' data-idx='7'%3E%3Cg transform='matrix(0.7071067811865476,0.7071067811865476,-0.7071067811865476,0.7071067811865476,0,0)' data-idx='8'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.0353' data-idx='9' transform='matrix(1.0176500082015991,0,0,1.0176500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,50,80)' data-idx='12'%3E%3Cg transform='matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)' data-idx='13'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.1603' data-idx='14' transform='matrix(1.0801500082015991,0,0,1.0801500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,28.78679656982422,71.21320343017578)' data-idx='17'%3E%3Cg transform='matrix(-0.7071067811865475,0.7071067811865476,-0.7071067811865476,-0.7071067811865475,0,0)' data-idx='18'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.2853' data-idx='19' transform='matrix(1.1426500082015991,0,0,1.1426500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,20,50)' data-idx='22'%3E%3Cg transform='matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)' data-idx='23'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.4103' data-idx='24' transform='matrix(1.2051500082015991,0,0,1.2051500082015991,0,0)'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,28.78679656982422,28.78679656982422)' data-idx='27'%3E%3Cg transform='matrix(-0.7071067811865477,-0.7071067811865475,0.7071067811865475,-0.7071067811865477,0,0)' data-idx='28'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23f9d045' fill-opacity='0.5353' data-idx
