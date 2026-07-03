@@ -25,9 +25,8 @@
 }
 
 .reaction {
-    flex: 0 0 85px;
-    max-width: 70px;
-    cursor: pointer
+    position:relative;
+    overflow:visible;
 }
 
 .reaction-content {
@@ -127,18 +126,33 @@
     white-space: nowrap
 }
 
-.total-wrap {
-    background: #a9a9a9;
-    display: none;
-    border-radius: 100%;
-    line-height: normal;
-    height: 16.96px;
-    font-size: 60%;
-    padding: 2px 6px;
-    right: 3px;
-    top: 7px
-}
+.total-wrap{
+    position:absolute;
+    top:50%;
+    left:100%;
+    transform:translate(8px,-50%);
 
+    display:none;
+
+    background:#a9a9a9;
+    color:#fff;
+    border-radius:999px;
+
+    padding:2px 6px;
+    font-size:11px;
+    font-weight:700;
+
+    line-height:normal;
+    white-space:nowrap;
+
+    z-index:999;
+}
+.reaction:hover .total-wrap,
+.reaction.active .total-wrap{
+    display:block;
+    opacity:1;
+    transform:translate(8px,-50%) scale(1);
+}
 .reaction.active .total-wrap {
     color: #fff;
     display: block;
