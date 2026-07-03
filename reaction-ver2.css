@@ -26,7 +26,11 @@
 
     gap:14px; /* 👈 thêm khoảng cách giữa các icon */
 }
-
+.rb-reaction.show{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    pointer-events:auto;
+}
 /* =========================
    ITEM
 ========================= */
@@ -188,24 +192,21 @@
    MOBILE
 ========================= */
 
-@media (max-width:800px) {
+@media (max-width:768px){
 
-    .reaction {
-        flex: 0 0 70px;
+    .rb-reaction{
+        display:flex;
+        flex-wrap:nowrap;
+        justify-content:center;
+        align-items:center;
+        gap:10px;
+        overflow-x:auto;
+        overflow-y:visible;
+        -webkit-overflow-scrolling:touch;
     }
 
-    .reaction-icon img {
-        width: 38px;
-        height: 38px;
+    .reaction{
+        flex:0 0 auto;
     }
 
-    .reaction-section {
-        padding: 20px 7px;
-    }
-}
-
-@media (max-width:767px) {
-    .reaction-section {
-        margin-top: 25px;
-    }
 }
