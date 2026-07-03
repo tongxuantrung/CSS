@@ -154,15 +154,18 @@
 }
 
 /* show count */
-.reaction:hover .total-wrap,
+/* Mặc định: nếu đã có reaction thì hiện số */
 .reaction.active .total-wrap{
     opacity:1;
     visibility:visible;
-    transform: scale(1);
+    transform:scale(1);
 }
 
-.reaction.active .total-wrap {
-    background: #f3797e;
+/* Hover thì ẩn số để icon phóng to không bị che */
+.reaction:hover .total-wrap{
+    opacity:0;
+    visibility:hidden;
+    transform:scale(.8);
 }
 
 /* =========================
