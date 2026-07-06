@@ -142,18 +142,6 @@
     color: #fff;
 }
 /* show count */
-/* Mặc định: nếu đã có reaction thì hiện số */
-.reaction.active .total-wrap{
-    opacity:1;
-    visibility:visible;
-    transform:translate(-50%,6px);
-}
-
-.reaction:hover .total-wrap{
-    opacity:0;
-    visibility:hidden;
-    transform:translate(-50%,12px);
-}
 /* =========================
    ACTIVE
 ========================= */
