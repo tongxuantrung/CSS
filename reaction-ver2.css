@@ -126,26 +126,41 @@
 ========================= */
 
 .total-wrap {
-    position:absolute;
-    left:50%;
-    top:90%;
-    transform:translate(-50%,6px);
-    color:#fff;
-    border-radius:999px;
-    padding:4px 6px;
-    font-size:11px;
-    font-weight:700;
-    line-height:1;
-    white-space:nowrap;
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.15s ease;
-
-    z-index:999;
+    position: absolute;
+    left: 50%;
+    top: 90%;
+    transform: translate(-50%, 6px);
+    border-radius: 999px;
+    padding: 4px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    z-index: 999;
+    overflow: hidden;       /* để bo tròn cắt phần nền trượt bên trong */
+    transition: color 0.3s ease;
 }
 
+/* Lớp nền đỏ nằm dưới, mặc định trượt ra ngoài bên trái */
+.total-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #ff3040;
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+/* Khi là reaction của mình -> trượt nền đỏ vào, chữ trắng */
+.reaction.active .total-wrap {
+    color: #fff;
+}
+
+.reaction.active .total-wrap::before {
+    transform: translateX(0);
+}
 .reaction.active .total-wrap {
     background: #ff3040;   /* nền đỏ: đây là reaction của chính mình */
     color: #fff;
