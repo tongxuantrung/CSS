@@ -1,210 +1,191 @@
-@keyframes reaction-spinner {
-    to { transform: rotate(360deg); }
+var fbConfig = {
+    databaseURL: "https://reaction-cmt-default-rtdb.firebaseio.com/"
+};
+
+var ls = (e, a) => {
+    let t = document.createElement("script");
+    t.readyState ? t.onreadystatechange = () => {
+        if (t.readyState === "loaded" || t.readyState === "complete") {
+            t.onreadystatechange = null;
+            a();
+        }
+    } : t.onload = () => a();
+    t.src = e;
+    document.getElementsByTagName("body")[0].appendChild(t);
+};
+
+ls("https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js", function () {
+ls("https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js", () => {
+
+firebase.initializeApp(fbConfig);
+
+/* =========================
+   DANH SÁCH CÁC LOẠI REACTION
+========================= */
+var REACTIONS = [
+    { btnClass: 'like-action',  action: 'Thích' },
+    { btnClass: 'love-action',  action: 'Yêu' },
+    { btnClass: 'care-action',  action: 'Thương' },
+    { btnClass: 'haha-action',  action: 'Haha' },
+    { btnClass: 'wow-action',   action: 'Wow' },
+    { btnClass: 'sad-action',   action: 'Buồn' },
+    { btnClass: 'angry-action', action: 'Giận' }
+];
+
+var STORAGE_KEY = 'myReactions'; // { [postId]: actionName }
+
+/* =========================
+   LOCAL STORAGE HELPERS
+========================= */
+function getMyReactions() {
+    try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    } catch (e) {
+        return {};
+    }
+}
+
+function setMyReaction(id, action) {
+    var all = getMyReactions();
+    if (action === null) {
+        delete all[id];
+    } else {
+        all[id] = action;
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
 }
 
 /* =========================
-   CONTAINER
+   TĂNG / GIẢM SỐ ĐẾM AN TOÀN
+   (transaction tránh lệch số khi nhiều người bấm cùng lúc)
 ========================= */
-
-.reaction-section {
-    position: relative;
-    display: block;
-}
-
-.reaction-section-title {
-    display: block;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-.rb-reaction{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    max-width:700px;
-    overflow:visible;
-    gap:30px; /* 👈 thêm khoảng cách giữa các icon */
-}
-.rb-reaction.show{
-    opacity:1;
-    transform:translateY(0) scale(1);
-    pointer-events:auto;
-}
-/* =========================
-   ITEM
-========================= */
-
-.reaction {
-    position: relative;
-    overflow: visible;
-    z-index: 1;
-    transition: transform .18s;
-}
-
-.reaction:hover {
-    z-index: 100;
+function changeCount(action, id, delta) {
+    var ref = firebase.database().ref(action + '/' + id + '/total');
+    return ref.transaction(function (current) {
+        var val = (current || 0) + delta;
+        return val < 0 ? 0 : val;
+    });
 }
 
 /* =========================
-   ICON
+   KHỞI TẠO CHO 1 BÀI VIẾT (1 khối .rb-reaction)
 ========================= */
+function setupPost(wrap) {
+    var idHolder = wrap.hasAttribute('data-reaction-id')
+        ? wrap
+        : wrap.querySelector('[data-reaction-id]');
 
-.reaction-content {
-    position: relative;
-    display: block;
-    padding: 5px 0;
-    text-align: center;
-    background: transparent;
-}
+    if (!idHolder) return;
+    var id = idHolder.getAttribute('data-reaction-id');
 
-.reaction-content .reaction-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    var buttons = {}; // action -> btn element
 
-    padding: 0;
+    REACTIONS.forEach(function (r) {
+        var btn = wrap.querySelector('.' + r.btnClass);
+        if (!btn) return;
+        buttons[r.action] = btn;
 
-    transform-origin: center bottom;
-    transition: transform .18s cubic-bezier(.25,1.4,.5,1), filter .18s;
-    will-change: transform;
-}
+        // Lắng nghe số đếm realtime, hiển thị nền xám mặc định (xử lý qua CSS .total-wrap)
+        firebase.database().ref(r.action + '/' + id + '/total')
+            .on('value', function (snap) {
+                var count = Math.max(0, snap.val() || 0);
+                var countEl = btn.querySelector('.reaction-count');
+                var wrapEl = btn.querySelector('.total-wrap');
+                if (countEl) countEl.innerText = count > 0 ? count : '';
+                if (wrapEl) wrapEl.style.display = count > 0 ? 'block' : 'none';
+            });
+    });
 
-.reaction-icon img {
-    width: 42px;
-    height: 42px;
-    display: block;
-}
-
-/* Hover icon */
-.reaction:hover .reaction-icon{
-    transform: translateY(-8px) scale(1.5);
-    transition: transform .18s cubic-bezier(.25,1.4,.5,1);
-}
-
-/* =========================
-   LABEL (reaction-nhan)
-========================= */
-
-.reaction-nhan {
-    position: absolute;
-    left: 50%;
-    bottom: 100%;
-
-    transform: translateX(-50%) translateY(-18px);
-
-    padding: 5px 10px;
-    border-radius: 999px;
-
-    color: inherit;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px) saturate(150%) contrast(100%);
-    -webkit-backdrop-filter: blur(10px) saturate(150%) contrast(100%);
-
-    font-size: 11px;
-    font-weight: 600;
-
-    white-space: nowrap;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition: .2s ease;
-
-    z-index: 999;
-}
-
-.reaction:hover .reaction-nhan {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(-24px);
-}
-
-/* =========================
-   COUNT BADGE
-========================= */
-
-.total-wrap{
-    position:absolute;
-    left:50%;
-    top:100%;
-    transform:translate(-50%,6px);
-
-    background:#a9a9a9;
-    color:#fff;
-
-    border-radius:999px;
-
-    padding:2px 6px;
-    font-size:11px;
-    font-weight:700;
-    line-height:1;
-    white-space:nowrap;
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.15s ease;
-
-    z-index:999;
-}
-
-/* show count */
-/* Mặc định: nếu đã có reaction thì hiện số */
-.reaction.active .total-wrap{
-    opacity:1;
-    visibility:visible;
-    transform:translate(-50%,6px);
-}
-
-.reaction:hover .total-wrap{
-    opacity:0;
-    visibility:hidden;
-    transform:translate(-50%,12px);
-}
-/* =========================
-   ACTIVE
-========================= */
-
-.reaction.active .reaction-content {
-    border-color: #f9d045;
-}
-
-/* =========================
-   LOADING SPINNER
-========================= */
-
-.reaction.loading:before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23f9d045' fill='none' stroke-width='6'/%3E%3C/svg%3E");
-    background-size: 100%;
-    position: absolute;
-    right: 0;
-    width: 18px;
-    height: 18px;
-    content: "";
-    animation: reaction-spinner 2s linear infinite;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width:768px){
-
-    .rb-reaction{
-        display:flex;
-        flex-wrap:nowrap;
-        justify-content:center;
-        align-items:center;
-        gap:10px;
-        overflow-x:auto;
-        overflow-y:visible;
-        -webkit-overflow-scrolling:touch;
+    // Khôi phục trạng thái "đã react" của chính user này (tô đỏ qua class active)
+    var current = getMyReactions()[id];
+    if (current && buttons[current]) {
+        buttons[current].classList.add('active');
     }
 
-    .reaction{
-        flex:0 0 auto;
+    /* =========================
+       CLICK: CHỈ CHO 1 REACTION / BÀI VIẾT
+    ========================= */
+    REACTIONS.forEach(function (r) {
+        var btn = buttons[r.action];
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (btn.classList.contains('loading')) return; // chặn double click
+            btn.classList.add('loading');
+
+            setTimeout(function () {
+                var prev = getMyReactions()[id];
+
+                if (prev === r.action) {
+                    // Bấm lại đúng reaction đang chọn -> bỏ reaction
+                    changeCount(r.action, id, -1);
+                    btn.classList.remove('active');
+                    setMyReaction(id, null);
+
+                } else {
+                    if (prev && buttons[prev]) {
+                        // Đang có reaction khác -> tự trừ cái cũ đi
+                        changeCount(prev, id, -1);
+                        buttons[prev].classList.remove('active');
+                    }
+                    // Cộng cái mới, tô đỏ nút mới
+                    changeCount(r.action, id, 1);
+                    btn.classList.add('active');
+                    setMyReaction(id, r.action);
+                }
+
+                btn.classList.remove('loading');
+            }, 300);
+        });
+    });
+
+    /* =========================
+       MOBILE: LONG PRESS + DRAG (FACEBOOK STYLE)
+    ========================= */
+    let pressTimer;
+    let isHolding = false;
+
+    function updateScale(x) {
+        wrap.querySelectorAll('.reaction').forEach(function (item) {
+            var rect = item.getBoundingClientRect();
+            var center = rect.left + rect.width / 2;
+            var distance = Math.abs(x - center);
+            var scale = 2 - distance / 120;
+            scale = Math.max(1, Math.min(scale, 2));
+            item.style.transform = 'translateY(-10px) scale(' + scale + ')';
+        });
     }
 
+    function resetScale() {
+        wrap.querySelectorAll('.reaction').forEach(function (item) {
+            item.style.transform = '';
+        });
+    }
+
+    wrap.addEventListener('touchstart', function () {
+        isHolding = true;
+        pressTimer = setTimeout(function () {
+            // bắt đầu chế độ reaction picker
+        }, 200);
+    });
+
+    wrap.addEventListener('touchmove', function (e) {
+        if (!isHolding) return;
+        updateScale(e.touches[0].clientX);
+    });
+
+    wrap.addEventListener('touchend', function () {
+        isHolding = false;
+        clearTimeout(pressTimer);
+        resetScale();
+    });
 }
+
+/* =========================
+   ÁP DỤNG CHO TẤT CẢ BÀI VIẾT TRÊN TRANG
+========================= */
+document.querySelectorAll('.rb-reaction').forEach(setupPost);
+
+});
+});
