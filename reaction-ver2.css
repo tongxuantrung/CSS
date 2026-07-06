@@ -126,14 +126,24 @@
 ========================= */
 
 .total-wrap {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, 6px);
-    background: #e4e6eb;   /* nền xám mặc định: số người khác đã react */
-    color: #050505;
-    border-radius: 12px;
-    padding: 2px 8px;
-    transition: background 0.2s, color 0.2s;
+    position:absolute;
+    left:50%;
+    top:90%;
+    transform:translate(-50%,6px);
+    color:#fff;
+    border-radius:999px;
+    padding:4px 6px;
+    font-size:11px;
+    font-weight:700;
+    line-height:1;
+    white-space:nowrap;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.15s ease;
+
+    z-index:999;
 }
 
 .reaction.active .total-wrap {
