@@ -23,8 +23,7 @@
     justify-content:center;
     max-width:700px;
     overflow:visible;
-    scale: 1.3;
-    gap:20px; /* 👈 thêm khoảng cách giữa các icon */
+    gap:30px; /* 👈 thêm khoảng cách giữa các icon */
 }
 .rb-reaction.show{
     opacity:1;
