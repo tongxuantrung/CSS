@@ -150,7 +150,6 @@
 
     z-index:999;
 }
-
 /* show count */
 /* Mặc định: nếu đã có reaction thì hiện số */
 .reaction.active .total-wrap{
