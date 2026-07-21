@@ -20,7 +20,7 @@
 .rb-reaction{
     display:flex;
     flex-wrap:wrap;
-    justify-content:center;
+    justify-content:space-around;
     max-width:700px;
     overflow:visible;
     gap:30px; /* 👈 thêm khoảng cách giữa các icon */
